@@ -1,16 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 
-class LoginPage extends StatefulWidget {
+class AddPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _AddPageState createState() => _AddPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _AddPageState extends State<AddPage> {
   String name = "";
   bool changeButton = false;
-  String password = "123456";
-  String username = "test@admin.com";
+  String itemname = "";
+  String itemprice = "";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -26,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 20.0,
                 ),
                 Image.asset(
-                  "assets/images/login_img.png",
+                  "assets/images/cart.png",
                   fit: BoxFit.cover,
                 ),
                 SizedBox(
@@ -72,16 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: "Enter username",
-                          labelText: "Username",
+                          hintText: "Enter Item name",
+                          labelText: "Item name",
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Username cannot be empty";
+                            return "Essential Field";
                           }
-                          else if (value != username ) {
-                              return "Incorrect Username";
-                            }
+
                           return null;
                         },
                         onChanged: (value) {
@@ -92,18 +92,13 @@ class _LoginPageState extends State<LoginPage> {
                       TextFormField(
                         obscureText: true,
                         decoration: InputDecoration(
-                          hintText: "Enter password",
-                          labelText: "Password",
+                          hintText: "Enter Item Price",
+                          labelText: "Item Price",
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Password cannot be empty";
-                          } else if (value.length < 6) {
-                            return "Password length should be atleast 6";
+                            return "This is a required Entry";
                           }
-                            else if (value != password ) {
-                              return "Incorrect password";
-                            }
                           return null;
                         },
                       ),
@@ -127,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.white,
                                   )
                                 : Text(
-                                    "Login",
+                                    "Enter",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
